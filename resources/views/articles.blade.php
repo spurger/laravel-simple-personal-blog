@@ -27,6 +27,10 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
+                                        <a class="dropdown-item text-warning"
+                                            href="{{ route('articles.edit', ['article' => $article]) }}">Edit</a>
+                                    </li>
+                                    <li>
                                         <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
                                             @method('DELETE')
                                             @csrf

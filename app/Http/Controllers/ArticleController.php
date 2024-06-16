@@ -12,7 +12,7 @@ class ArticleController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-            new Middleware('auth', only: ['create', 'store', 'destroy']),
+            new Middleware('auth', only: ['create', 'store', 'edit', 'update', 'destroy']),
         ];
     }
 
@@ -41,6 +41,23 @@ class ArticleController extends Controller implements HasMiddleware
         ]);
 
         $article = Article::create($validated);
+
+        return redirect()->route('articles.show', ['article' => $article]);
+    }
+
+    public function edit(Article $article)
+    {
+        return view('articles.edit', compact('article'));
+    }
+
+    public function update(Request $request, Article $article)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'full_text' => 'required|string|max:65535',
+        ]);
+
+        $article->fill($validated)->save();
 
         return redirect()->route('articles.show', ['article' => $article]);
     }
