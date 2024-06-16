@@ -11,15 +11,18 @@
             @forelse ($articles as $article)
                 <article class="mb-3">
                     <div class="d-flex align-items-center justify-content-between gap-3">
-                        <h2 class="fs-5 mb-0">
-                            <a href="{{ route('articles.show', ['article' => $article]) }}" class="mb-3">
-                                {{ $article->title }}
-                            </a>
-                        </h2>
+                        <div>
+                            <h2 class="fs-5 mb-0">
+                                <a href="{{ route('articles.show', ['article' => $article]) }}" class="mb-3">
+                                    {{ $article->title }}
+                                </a>
+                            </h2>
+                            <small class="text-body-secondary">{{ $article->created_at }}</small>
+                        </div>
                         @auth
                             <div class="dropdown">
-                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
