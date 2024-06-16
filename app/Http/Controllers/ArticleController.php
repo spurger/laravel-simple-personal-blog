@@ -12,7 +12,7 @@ class ArticleController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-            new Middleware('auth', only: ['create', 'store']),
+            new Middleware('auth', only: ['create', 'store', 'destroy']),
         ];
     }
 
@@ -43,5 +43,12 @@ class ArticleController extends Controller implements HasMiddleware
         $article = Article::create($validated);
 
         return redirect()->route('articles.show', ['article' => $article]);
+    }
+
+    public function destroy(Article $article)
+    {
+        $article->delete();
+
+        return redirect()->route('articles.index');
     }
 }

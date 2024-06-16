@@ -5,14 +5,36 @@
 @section('content')
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
-            <h1 class="mb-3">Articles</h1>
+            <div class="mb-3">
+                <h1>Articles</h1>
+            </div>
             @forelse ($articles as $article)
                 <article class="mb-3">
-                    <h2 class="fs-5">
-                        <a href="{{ route('articles.show', ['article' => $article]) }}" class="mb-3">
-                            {{ $article->title }}
-                        </a>
-                    </h2>
+                    <div class="d-flex align-items-center justify-content-between gap-3">
+                        <h2 class="fs-5 mb-0">
+                            <a href="{{ route('articles.show', ['article' => $article]) }}" class="mb-3">
+                                {{ $article->title }}
+                            </a>
+                        </h2>
+                        @auth
+                            <div class="dropdown">
+                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
+                                            @method('DELETE')
+                                            @csrf
+
+                                            <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endauth
+                    </div>
                     <div class="text-truncate fs-6">{{ $article->full_text }}</div>
                 </article>
             @empty

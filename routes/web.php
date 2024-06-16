@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/articles');
 
 Route::view('/about', 'about')->name('about');
-Route::resource('articles', ArticleController::class)->only(['index', 'show', 'create', 'store']);
+Route::resource('articles', ArticleController::class)
+    ->only(['index', 'show', 'create', 'store', 'destroy']);
 
 Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
