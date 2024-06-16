@@ -7,17 +7,18 @@
     <form method="POST" action="{{ route('login.store') }}">
         @csrf
 
-        <div>
-            <label for="email">Email address</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="username email">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input id="email" type="email" name="email" value="{{ old('email') }}" class="form-control"
+                autocomplete="username email">
         </div>
-        <div>
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password" autocomplete="current-password">
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input id="password" type="password" name="password" class="form-control" autocomplete="current-password">
         </div>
-        <x-errors />
+        <x-errors class="mb-3" />
         <div>
-            <button type="submit">Login</button>
+            <button type="submit" class="btn btn-primary">Login</button>
         </div>
     </form>
 @endsection
