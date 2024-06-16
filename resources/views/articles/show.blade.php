@@ -4,5 +4,5 @@
 
 @section('content')
     <h1>{{ $article->title }}</h1>
-    <pre>{{ $article->full_text }}</pre>
+    <pre style="white-space: pre-line">{{ $article->full_text }}</pre>
 @endsection
