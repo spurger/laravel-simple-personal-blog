@@ -10,7 +10,7 @@
             </div>
             @forelse ($articles as $article)
                 <article class="mb-3">
-                    <div class="d-flex align-items-center justify-content-between gap-3">
+                    <div class="d-flex justify-content-between gap-3">
                         <div>
                             <h2 class="fs-5 mb-0">
                                 <a href="{{ route('articles.show', ['article' => $article]) }}" class="mb-3">
