@@ -10,8 +10,10 @@
 </head>
 
 <body>
-    <x-navbar></x-navbar>
-    <main>
+    <header class="container mt-1">
+        <x-navbar></x-navbar>
+    </header>
+    <main class="container mt-3">
         @yield('content')
     </main>
 </body>
