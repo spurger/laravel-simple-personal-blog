@@ -43,6 +43,7 @@
             @empty
                 <div class="alert alert-warning">No articles found.</div>
             @endforelse
+            {{ $articles->links() }}
         </div>
     </div>
 @endsection
