@@ -11,6 +11,9 @@
         </li>
         @auth
             <li>
+                <a href="{{ route('articles.create') }}">Create article</a>
+            </li>
+            <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @method('DELETE')
                     @csrf
