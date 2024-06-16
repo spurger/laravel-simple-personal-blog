@@ -27,7 +27,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <a class="dropdown-item text-warning"
+                                        <a class="dropdown-item text-warning fw-bold"
                                             href="{{ route('articles.edit', ['article' => $article]) }}">Edit</a>
                                     </li>
                                     <li>
@@ -35,7 +35,7 @@
                                             @method('DELETE')
                                             @csrf
 
-                                            <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                            <button type="submit" class="dropdown-item text-danger fw-bold">Delete</button>
                                         </form>
                                     </li>
                                 </ul>
