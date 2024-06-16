@@ -7,17 +7,17 @@
     <form method="POST" action="{{ route('articles.store') }}">
         @csrf
 
-        <div>
-            <label for="title">Title</label>
-            <input id="title" type="text" name="title" autocomplete="off">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input id="title" type="text" name="title" class="form-control" autocomplete="off">
         </div>
-        <div>
-            <label for="full_text">Text content</label><br>
-            <textarea id="full_text" name="full_text" rows="20" placeholder="Write you content here..."></textarea>
+        <div class="mb-3">
+            <label for="full_text" class="form-label">Text content</label>
+            <textarea id="full_text" name="full_text" rows="10" class="form-control" placeholder="Write you content here..."></textarea>
         </div>
-        <x-errors />
+        <x-errors class="mb-3" />
         <div>
-            <button type="submit">Save</button>
+            <button type="submit" class="btn btn-success">Save</button>
         </div>
     </form>
 @endsection
