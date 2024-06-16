@@ -16,9 +16,13 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
+        $date = fake()->dateTimeBetween('-2 years');
+
         return [
             'title' => fake()->sentence(),
             'full_text' => fake()->paragraphs(3, true),
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 }
