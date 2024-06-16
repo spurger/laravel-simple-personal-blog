@@ -6,6 +6,17 @@
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <h1>{{ $article->title }}</h1>
+            @auth
+                <div class="d-flex mb-3 gap-2">
+                    <a class="btn btn-warning" href="{{ route('articles.edit', ['article' => $article]) }}">Edit</a>
+                    <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
+                        @method('DELETE')
+                        @csrf
+
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            @endauth
             <pre style="white-space: pre-line">{{ $article->full_text }}</pre>
         </div>
     </div>
