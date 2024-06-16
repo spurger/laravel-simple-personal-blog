@@ -17,7 +17,7 @@
                     </form>
                 </div>
             @endauth
-            <pre style="white-space: pre-line">{{ $article->full_text }}</pre>
+            <div style="white-space: pre-line">{{ $article->full_text }}</div>
         </div>
     </div>
 @endsection
