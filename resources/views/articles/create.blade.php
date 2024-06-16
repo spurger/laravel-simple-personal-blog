@@ -15,13 +15,7 @@
             <label for="full_text">Text content</label><br>
             <textarea id="full_text" name="full_text" rows="20" placeholder="Write you content here..."></textarea>
         </div>
-        @if ($errors->any())
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        @endif
+        <x-errors />
         <div>
             <button type="submit">Save</button>
         </div>

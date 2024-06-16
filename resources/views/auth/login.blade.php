@@ -15,13 +15,7 @@
             <label for="password">Password</label>
             <input id="password" type="password" name="password" autocomplete="current-password">
         </div>
-        @if ($errors->any())
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        @endif
+        <x-errors />
         <div>
             <button type="submit">Login</button>
         </div>
