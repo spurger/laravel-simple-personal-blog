@@ -5,4 +5,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/articles');
 
-Route::get('/articles', [ArticleController::class, 'index']);
+Route::resource('articles', ArticleController::class)->only(['index', 'show']);
