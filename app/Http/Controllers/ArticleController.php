@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleFormRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -38,15 +38,9 @@ class ArticleController extends Controller implements HasMiddleware
         return view('articles.create', compact('categories', 'tags'));
     }
 
-    public function store(Request $request)
+    public function store(ArticleFormRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'full_text' => 'required|string|max:65535',
-            'category' => 'required|exists:categories,id',
-            'tags' => 'sometimes|array',
-            'tags.*' => 'required|exists:tags,id',
-        ]);
+        $validated = $request->validated();
 
         $article = Article::make($validated);
         $article->category()->associate($validated['category']);
@@ -71,15 +65,9 @@ class ArticleController extends Controller implements HasMiddleware
         return view('articles.edit', compact('article', 'categories', 'tags'));
     }
 
-    public function update(Request $request, Article $article)
+    public function update(ArticleFormRequest $request, Article $article)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'full_text' => 'required|string|max:65535',
-            'category' => 'required|exists:categories,id',
-            'tags' => 'sometimes|array',
-            'tags.*' => 'required|exists:tags,id',
-        ]);
+        $validated = $request->validated();
 
         $article->fill($validated)->save();
         $article->category()->associate($validated['category']);
