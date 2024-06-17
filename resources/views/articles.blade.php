@@ -23,6 +23,11 @@
                                 <span class="badge rounded-pill text-bg-primary">
                                     {{ $article->category->name }}
                                 </span>
+                                @foreach ($article->tags as $tag)
+                                    <span class="badge rounded-pill text-bg-success fw-medium">
+                                        {{ $tag->name }}
+                                    </span>
+                                @endforeach
                             </div>
                             <small class="text-body-secondary">{{ $article->created_at }}</small>
                         </div>
