@@ -13,7 +13,7 @@
     <header class="container mt-1">
         <x-navbar></x-navbar>
     </header>
-    <main class="container mt-3">
+    <main class="container mb-5 mt-3">
         @yield('content')
     </main>
 </body>
