@@ -60,7 +60,15 @@ class ArticleController extends Controller implements HasMiddleware
 
     public function edit(Article $article)
     {
-        return view('articles.edit', compact('article'));
+        /** @var \Illuminate\Support\Collection */
+        $tagIds = $article->tags->pluck('id');
+        $categories = Category::orderBy('name')->get();
+        $tags = Tag::orderBy('name')->get();
+        foreach ($tags as $tag) {
+            $tag->selected = $tagIds->contains($tag->id);
+        }
+
+        return view('articles.edit', compact('article', 'categories', 'tags'));
     }
 
     public function update(Request $request, Article $article)
@@ -68,9 +76,16 @@ class ArticleController extends Controller implements HasMiddleware
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'full_text' => 'required|string|max:65535',
+            'category' => 'required|exists:categories,id',
+            'tags' => 'sometimes|array',
+            'tags.*' => 'required|exists:tags,id',
         ]);
 
         $article->fill($validated)->save();
+        $article->category()->associate($validated['category']);
+        $article->save();
+        $tags = $validated['tags'] ?? [];
+        $article->tags()->sync($tags);
 
         return redirect()->route('articles.show', ['article' => $article]);
     }
