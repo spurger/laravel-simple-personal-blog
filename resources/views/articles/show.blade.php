@@ -6,8 +6,14 @@
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <h1>{{ $article->title }}</h1>
+            <div>
+                <span class="badge rounded-pill text-bg-primary">
+                    {{ $article->category->name }}
+                </span>
+            </div>
+            <small class="text-body-secondary">{{ $article->created_at }}</small>
             @auth
-                <div class="d-flex mb-3 gap-2">
+                <div class="d-flex mb-3 mt-2 gap-2">
                     <a class="btn btn-warning" href="{{ route('articles.edit', ['article' => $article]) }}">Edit</a>
                     <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
                         @method('DELETE')
@@ -17,7 +23,7 @@
                     </form>
                 </div>
             @endauth
-            <div style="white-space: pre-line">{{ $article->full_text }}</div>
+            <div class="mt-3" style="white-space: pre-line">{{ $article->full_text }}</div>
         </div>
     </div>
 @endsection
