@@ -27,7 +27,7 @@
             @forelse ($articles as $article)
                 <x-article class="mb-3" :article="$article" :headingLevel="3" />
             @empty
-                <div>No articles found.</div>
+                <div class="alert alert-warning">No articles found.</div>
             @endforelse
             {{ $articles->links() }}
         </div>

@@ -18,7 +18,7 @@
                         <span>({{ $tag->articles_count }} articles)</span>
                     </a>
                 @empty
-                    <div>No tags found.</div>
+                    <div class="alert alert-warning">No tags found.</div>
                 @endforelse
             </div>
             <div class="mt-1">

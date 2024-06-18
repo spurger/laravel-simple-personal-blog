@@ -19,7 +19,7 @@
                         <span>({{ $category->articles_count }} articles)</span>
                     </a>
                 @empty
-                    <div>No categories found.</div>
+                    <div class="alert alert-warning">No categories found.</div>
                 @endforelse
             </div>
             <div class="mt-1">
