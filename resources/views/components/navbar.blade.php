@@ -7,6 +7,10 @@
         <li class="nav-item">
             <a class="nav-link @if (request()->routeIs('about')) active @endif" href="{{ route('about') }}">About</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link @if (request()->routeIs('categories.index')) active @endif"
+                href="{{ route('categories.index') }}">Categories</a>
+        </li>
         @auth
             <li class="nav-item">
                 <a class="nav-link @if (request()->routeIs('articles.create')) active @endif"
