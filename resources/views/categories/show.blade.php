@@ -19,11 +19,11 @@
                         </button>
                     </form>
                 </div>
-                <div class="mb-3 mt-1">
+                <div class="mt-1">
                     <small class="text-danger">You cannot delete a category that has articles.</small>
                 </div>
             @endauth
-            <h2>Articles under this category</h2>
+            <h2 class="mt-3">Articles under this category</h2>
             @forelse ($articles as $article)
                 <x-article class="mb-3" :article="$article" />
             @empty
