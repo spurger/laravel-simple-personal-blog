@@ -22,7 +22,7 @@
             @endauth
             <h2 class="mt-3">Articles under this tag</h2>
             @forelse ($articles as $article)
-                <x-article class="mb-3" :article="$article" />
+                <x-article class="mb-3" :article="$article" :headingLevel="3" />
             @empty
                 <div>No articles found.</div>
             @endforelse

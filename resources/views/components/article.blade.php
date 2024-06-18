@@ -1,14 +1,14 @@
-@props(['article'])
+@props(['article', 'headingLevel' => 2])
 
 <article {{ $attributes }}>
     <div class="d-flex justify-content-between gap-3">
         <div>
             <div>
-                <h2 class="fs-5 mb-0">
+                <x-heading :headingLevel="$headingLevel" class="fs-5 mb-0">
                     <a href="{{ route('articles.show', ['article' => $article]) }}">
                         {{ $article->title }}
                     </a>
-                </h2>
+                </x-heading>
             </div>
             <div>
                 <span class="badge rounded-pill text-bg-primary">
