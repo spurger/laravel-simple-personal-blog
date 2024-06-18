@@ -6,9 +6,11 @@
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <h1>Categories</h1>
-            <div class="mb-3">
-                <a href="{{ route('categories.create') }}" class="btn btn-primary">Create category</a>
-            </div>
+            @auth
+                <div class="mb-3">
+                    <a href="{{ route('categories.create') }}" class="btn btn-primary">Create category</a>
+                </div>
+            @endauth
             <div class="list-group">
                 @forelse ($categories as $category)
                     <a href="{{ route('categories.show', ['category' => $category]) }}"
