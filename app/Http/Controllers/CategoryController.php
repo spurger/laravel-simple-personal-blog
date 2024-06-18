@@ -22,7 +22,9 @@ class CategoryController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        $categories = Category::withCount('articles')->orderBy('name')->get();
+        $categories = Category::withCount('articles')
+            ->orderBy('name')
+            ->paginate(10);
 
         return view('categories', compact('categories'));
     }

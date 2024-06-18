@@ -22,6 +22,9 @@
                     <div>No categories found.</div>
                 @endforelse
             </div>
+            <div class="mt-1">
+                {{ $categories->links() }}
+            </div>
         </div>
     </div>
 @endsection
