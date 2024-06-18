@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller implements HasMiddleware
 {
@@ -44,6 +45,10 @@ class ArticleController extends Controller implements HasMiddleware
 
         $article = Article::make($validated);
         $article->category()->associate($validated['category']);
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+            $path = $request->file('photo')->store('article_images', 'public');
+            $article->photo_path = $path;
+        }
         $article->save();
         if (isset($validated['tags'])) {
             $article->tags()->attach($validated['tags']);
@@ -66,6 +71,15 @@ class ArticleController extends Controller implements HasMiddleware
 
         $article->fill($validated)->save();
         $article->category()->associate($validated['category']);
+        $hasNewPhoto = $request->hasFile('photo') && $request->file('photo')->isValid();
+        if (! empty($article->photo_path) && ($request->boolean('remove_photo') || $hasNewPhoto)) {
+            Storage::disk('public')->delete($article->photo_path);
+            $article->photo_path = null;
+        }
+        if ($hasNewPhoto) {
+            $path = $request->file('photo')->store('article_images', 'public');
+            $article->photo_path = $path;
+        }
         $article->save();
         $tags = $validated['tags'] ?? [];
         $article->tags()->sync($tags);
@@ -75,6 +89,9 @@ class ArticleController extends Controller implements HasMiddleware
 
     public function destroy(Article $article)
     {
+        if (! empty($article->photo_path)) {
+            Storage::disk('public')->delete($article->photo_path);
+        }
         $article->delete();
 
         return redirect()->route('articles.index');

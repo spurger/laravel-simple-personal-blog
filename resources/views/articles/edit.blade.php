@@ -7,7 +7,8 @@
         <div class="col-lg-6 offset-lg-3">
             <h1>Edit article</h1>
             <h2>{{ $article->title }}</h2>
-            <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}">
+            <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}"
+                enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
 
@@ -40,6 +41,28 @@
                             </option>
                         @endforeach
                     </select>
+                </div>
+                @if (!empty($article->photo_path))
+                    <div class="mb-2">
+                        <label class="form-label">Current photo:</label>
+                        <img class="d-block img-thumbnail" style="width: 15rem;"
+                            src="{{ asset('storage/' . $article->photo_path) }}">
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="1" name="remove_photo" id="remove_photo"
+                            @checked(old('remove_photo'))>
+                        <label class="form-check-label" for="remove_photo">
+                            Remove current image
+                        </label>
+                    </div>
+                @endif
+                <div class="mb-3">
+                    <label for="photo" class="form-label">New photo</label>
+                    <input id="photo" type="file" name="photo" class="form-control" accept="image/*"
+                        aria-describedby="photo_description">
+                    <div id="photo_description" class="form-text">
+                        Uploading a new photo will automatically remove the current one.
+                    </div>
                 </div>
                 <x-errors class="mb-3" />
                 <div>

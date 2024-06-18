@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <h1>Create article</h1>
-            <form method="POST" action="{{ route('articles.store') }}">
+            <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
@@ -37,6 +37,10 @@
                             </option>
                         @endforeach
                     </select>
+                </div>
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Photo</label>
+                    <input id="photo" type="file" name="photo" class="form-control" accept="image/*">
                 </div>
                 <x-errors class="mb-3" />
                 <div>

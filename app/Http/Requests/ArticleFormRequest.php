@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class ArticleFormRequest extends FormRequest
 {
@@ -27,6 +28,8 @@ class ArticleFormRequest extends FormRequest
             'category' => 'required|exists:categories,id',
             'tags' => 'sometimes|array',
             'tags.*' => 'required|exists:tags,id',
+            'photo' => ['nullable', File::image()->max('1mb')],
+            'remove_photo' => 'sometimes|boolean',
         ];
     }
 }

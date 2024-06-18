@@ -28,6 +28,9 @@
                     </form>
                 </div>
             @endauth
+            @if (!empty($article->photo_path))
+                <img class="img-fluid" src="{{ asset('storage/' . $article->photo_path) }}">
+            @endif
             <div class="mt-3" style="white-space: pre-line">{{ $article->full_text }}</div>
         </div>
     </div>
