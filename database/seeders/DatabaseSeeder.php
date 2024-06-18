@@ -26,22 +26,8 @@ class DatabaseSeeder extends Seeder
         DB::table('article_tag')->truncate();
         Schema::enableForeignKeyConstraints();
 
-        User::factory()->create([
-            'name' => 'Test Author',
-            'email' => 'example@example.com',
+        $this->call([
+            UserSeeder::class,
         ]);
-
-        $categories = Category::factory()->count(3)->create();
-
-        $tags = Tag::factory()->count(10)->create();
-
-        $articles = Article::factory()->count(20)->recycle($categories)->create();
-
-        foreach ($articles as $article) {
-            $count = fake()->numberBetween(0, 5);
-            $connectedTags = fake()->randomElements($tags, $count);
-            $tagIds = array_map(fn ($tag) => $tag->id, $connectedTags);
-            $article->tags()->attach($tagIds);
-        }
     }
 }
