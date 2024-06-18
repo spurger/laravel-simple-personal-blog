@@ -15,7 +15,7 @@
                 @forelse ($categories as $category)
                     <a href="{{ route('categories.show', ['category' => $category]) }}"
                         class="list-group-item list-group-item-action">
-                        <span>{{ $category->name }}</span>
+                        <span class="fw-bold text-primary">{{ $category->name }}</span>
                         <span>({{ $category->articles_count }} articles)</span>
                     </a>
                 @empty
