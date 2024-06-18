@@ -23,3 +23,14 @@ Also, there should be a Login mechanism (but no Register) for the author to writ
 - Article may have only one category, but may have multiple tags
 
 -----
+
+### How to use
+
+- Clone or download git repository
+- Copy .env.example file to .env and edit database credentials there
+- Run `php artisan key:generate`
+- Run `composer install`
+- Run `npm install`, then run `npm run dev`
+- Run `php artisan migrate --seed`, which will create a default user for login (email: example@example.com, password: password).
+- For more test data that includes articles, categories and tags, run `php artisan db:seed --class=ArticleSeeder`
+- Run `php artisan serve` to the results
