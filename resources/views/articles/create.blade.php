@@ -22,7 +22,7 @@
                     <select id="category" name="category" class="form-control">
                         <option selected disabled value="">Select a category...</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @if (old('category') == $category->id) selected @endif>
+                            <option value="{{ $category->id }}" @selected(old('category') == $category->id)>
                                 {{ $category->name }}
                             </option>
                         @endforeach
@@ -32,7 +32,9 @@
                     <label for="tags" class="form-label">Tags</label>
                     <select id="tags" name="tags[]" multiple class="form-control">
                         @foreach ($tags as $tag)
-                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                            <option value="{{ $tag->id }}" @selected(in_array($tag->id, old('tags', [])))>
+                                {{ $tag->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>

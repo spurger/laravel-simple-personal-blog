@@ -54,13 +54,8 @@ class ArticleController extends Controller implements HasMiddleware
 
     public function edit(Article $article)
     {
-        /** @var \Illuminate\Support\Collection */
-        $tagIds = $article->tags->pluck('id');
         $categories = Category::orderBy('name')->get();
         $tags = Tag::orderBy('name')->get();
-        foreach ($tags as $tag) {
-            $tag->selected = $tagIds->contains($tag->id);
-        }
 
         return view('articles.edit', compact('article', 'categories', 'tags'));
     }

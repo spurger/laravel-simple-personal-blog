@@ -14,7 +14,7 @@
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input id="name" type="text" name="name" class="form-control"
-                        value="{{ old('name') ?? $tag->name }}" autocomplete="off">
+                        value="{{ old('name', $tag->name) }}" autocomplete="off">
                 </div>
                 <x-errors class="mb-3" />
                 <div>
