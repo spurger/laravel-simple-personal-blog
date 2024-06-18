@@ -11,6 +11,10 @@
             <a class="nav-link @if (request()->routeIs('categories.index')) active @endif"
                 href="{{ route('categories.index') }}">Categories</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link @if (request()->routeIs('tags.index')) active @endif"
+                href="{{ route('tags.index') }}">Tags</a>
+        </li>
         @auth
             <li class="nav-item">
                 <a class="nav-link @if (request()->routeIs('articles.create')) active @endif"
