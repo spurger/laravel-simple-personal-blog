@@ -34,13 +34,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="tags" class="form-label">Tags</label>
-                    <select id="tags" name="tags[]" multiple class="form-control">
+                    <div style="max-height: 15rem; overflow-y: auto">
                         @foreach ($tags as $tag)
-                            <option value="{{ $tag->id }}" @selected(in_array($tag->id, old('tags', $article->tags->pluck('id')->all())))>
-                                {{ $tag->name }}
-                            </option>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}"
+                                    id="tag_{{ $tag->id }}" @checked(in_array($tag->id, old('tags', $article->tags->pluck('id')->all())))>
+                                <label class="form-check-label text-success" for="tag_{{ $tag->id }}">
+                                    {{ $tag->name }}
+                                </label>
+                            </div>
                         @endforeach
-                    </select>
+                    </div>
                 </div>
                 @if (!empty($article->photo_path))
                     <div class="mb-2">
